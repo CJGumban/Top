@@ -5,6 +5,12 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.expandVertically
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.shrinkVertically
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -43,6 +49,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -97,7 +104,7 @@ fun LoginScreen(
         
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = if (isButtonVisible) Arrangement.SpaceAround else Arrangement.Center,
+            verticalArrangement = Arrangement.SpaceAround,
             modifier = Modifier
                 .fillMaxSize()
                 .padding(innerPadding)
@@ -109,9 +116,11 @@ fun LoginScreen(
                 contentDescription = "Top Logo",
                 modifier = Modifier
                     .size(200.dp)
-                    .weight(1f, false)
-                    .padding(top = 40.dp),
+                    .weight(1f, true)
+
+                    ,
                 contentScale = ContentScale.Fit,
+                alignment = Alignment.Center
 
 
 
@@ -119,18 +128,28 @@ fun LoginScreen(
                 /*.scale(1f)
                 .padding(top = if (isButtonVisible) 10.dp else 10.dp)*/
             )
-
+            val density = LocalDensity.current
             AnimatedVisibility(visible = isButtonVisible,
                 modifier = Modifier
-                    .weight(1f)
-
-                    ,
+                    .weight(1f,true)
+                    ,enter = slideInVertically {
+                    // Slide in from 40 dp from the top.
+                    with(density) { 40.dp.roundToPx() }
+                } + expandVertically(
+                    // Expand from the top.
+                    expandFrom = Alignment.Bottom
+                ) + fadeIn(
+                    // Fade in with the initial alpha of 0.3f.
+                    initialAlpha = 0.3f
+                ),
+                exit = slideOutVertically() + shrinkVertically() + fadeOut()
 
                 ){
                 Column(
                     modifier = Modifier
                         .padding(horizontal = 24.dp)
                         .weight(1f, true)
+                        .padding(bottom = 24.dp)
 
 
                     ,
