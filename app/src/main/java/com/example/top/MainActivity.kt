@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.expandVertically
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
@@ -12,6 +13,7 @@ import androidx.compose.animation.shrinkVertically
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -118,9 +120,11 @@ fun LoginScreen(
                     .size(200.dp)
                     .weight(1f, true)
 
+                    .animateContentSize()
                     ,
                 contentScale = ContentScale.Fit,
                 alignment = Alignment.Center
+
 
 
 
@@ -150,6 +154,7 @@ fun LoginScreen(
                         .padding(horizontal = 24.dp)
                         .weight(1f, true)
                         .padding(bottom = 24.dp)
+
 
 
                     ,
