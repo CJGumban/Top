@@ -90,6 +90,7 @@ fun LoginScreen(
 
     ) {
         innerPadding ->
+        
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = if (isButtonVisible) Arrangement.SpaceAround else Arrangement.Center,
@@ -107,7 +108,7 @@ fun LoginScreen(
                     .weight(1f,false)
                     .padding(top = 40.dp),
                 contentScale = ContentScale.Fit,
-                alignment = Alignment.Center
+
 
 
 
@@ -118,7 +119,7 @@ fun LoginScreen(
             AnimatedVisibility(visible = isButtonVisible,
                 modifier = Modifier
                     .weight(1f)
-                    .wrapContentHeight(Alignment.Bottom,true)
+
                     ,
 
                 ){
