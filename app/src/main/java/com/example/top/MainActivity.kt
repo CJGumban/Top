@@ -23,14 +23,17 @@ import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowDown
+import androidx.compose.material.ripple.LocalRippleTheme
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -47,6 +50,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.lifecycleScope
 import com.example.top.ui.theme.Orange
+import com.example.top.ui.theme.RippleCustomTheme
 import com.example.top.ui.theme.TopTheme
 import com.example.top.ui.theme.White
 import kotlinx.coroutines.delay
@@ -105,7 +109,7 @@ fun LoginScreen(
                 contentDescription = "Top Logo",
                 modifier = Modifier
                     .size(200.dp)
-                    .weight(1f,false)
+                    .weight(1f, false)
                     .padding(top = 40.dp),
                 contentScale = ContentScale.Fit,
 
@@ -126,45 +130,48 @@ fun LoginScreen(
                 Column(
                     modifier = Modifier
                         .padding(horizontal = 24.dp)
-                        .weight(1f,true)
+                        .weight(1f, true)
 
 
                     ,
                     verticalArrangement = Arrangement.Bottom
                 ) {
-                    Button(
-                        onClick = { /*TODO*/ },
-                        colors = ButtonDefaults.buttonColors(Color.White),
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(horizontal = 40.dp)
-                            .height(50.dp)
+                    CompositionLocalProvider(LocalRippleTheme provides RippleCustomTheme) {
+                        Button(
+                            onClick = { /*TODO*/ },
+                            colors = ButtonDefaults.buttonColors(Color.White),
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(horizontal = 40.dp)
+                                .height(50.dp)
 
-                    ) {
-                        Text(
-                            text = "Log in",
-                            color = Color.Black,
-                            fontWeight = FontWeight.Bold,
-                            fontSize = 16.sp
-                        )
+                        ) {
+                            Text(
+                                text = "Log in",
+                                color = Color.Black,
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 16.sp
+                            )
+                        }
+
+                        Spacer(modifier = Modifier.height(16.dp))
+                        Button(
+                            onClick = { /*TODO*/ },
+                            colors = ButtonDefaults.buttonColors(Color.White),
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(horizontal = 40.dp)
+                                .height(50.dp)
+                        ) {
+                            Text(
+                                text = "Sign up",
+                                color = Color.Black,
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 16.sp
+                            )
+                        }
                     }
 
-                    Spacer(modifier = Modifier.height(16.dp))
-                    Button(
-                        onClick = { /*TODO*/ },
-                        colors = ButtonDefaults.buttonColors(Color.White),
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(horizontal = 40.dp)
-                            .height(50.dp)
-                    ) {
-                        Text(
-                            text = "Sign up",
-                            color = Color.Black,
-                            fontWeight = FontWeight.Bold,
-                            fontSize = 16.sp
-                        )
-                    }
                     Spacer(Modifier.height(32.dp))
                     Row(
                         horizontalArrangement = Arrangement.SpaceBetween,
